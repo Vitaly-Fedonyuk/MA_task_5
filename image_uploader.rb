@@ -6,6 +6,7 @@ require './request_wrapper'
 require 'bundler'
 Bundler.require(:default)
 
+# Service that call methods when validate url and download image
 class ImageUploader
   def initialize(image_url)
     @image_url = image_url

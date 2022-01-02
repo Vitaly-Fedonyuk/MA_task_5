@@ -4,6 +4,7 @@ require './request_wrapper'
 require 'bundler'
 Bundler.require(:default)
 
+# Service that handles the error
 class FaradayRequestWrapper
   include Faraday
 
@@ -12,21 +13,19 @@ class FaradayRequestWrapper
   end
 
   def call
-    debugger
-    begin
-      Faraday.get(@image_url)
+    exception
+  end
+
+  def exception
+    Faraday.get(@image_url)
     rescue ConnectionFailed => e
-      puts "Спораба пыдэднатися 1"
-      puts "Спораба пыдэднатися 2"
+      puts 'Спораба підєднатися 1...2'
       puts e.message
     rescue TimeoutError => e
-      puts "Спораба пыдэднатися 1"
-      puts "Спораба пыдэднатися 2"
+      puts 'Спораба підєднатися 1...2'
       puts e.message
-    rescue
-      puts "Спораба пыдэднатися 1"
-      puts "Спораба пыдэднатися 2"
+    rescue NilStatusError => e
+      puts 'Спораба підєднатися 1...2'
       puts e.message
-    end
   end
 end

@@ -2,14 +2,15 @@
 
 require './image_uploader'
 
-class Read_line
+# Service that save image url
+class Readline
   def read
-    puts "Enter image url: "
-    image_url = gets.chomp
+    puts 'Enter image url: '
+    gets.chomp
   end
 end
 
-read_url = Read_line.new.read
+read_url = Readline.new.read
 ImageUploader.new(read_url).call
 
 # Dir.mkdir create folder
